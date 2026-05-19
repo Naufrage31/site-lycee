@@ -121,6 +121,16 @@ h1{
 .text{
     font-size: 0.95em;
 }
+        .disappear{
+    animation: vanish 0.5s forwards;
+}
+
+@keyframes vanish{
+    to{
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
 
 /* ✨ effet de lumière qui pulse */
 @keyframes glowPulse{
@@ -129,17 +139,22 @@ h1{
         0 0 10px rgba(255, 215, 0, 0.2),
         0 0 20px rgba(255, 215, 0, 0.1);
     }
+
     50%{
         box-shadow:
         0 0 18px rgba(255, 215, 0, 0.5),
         0 0 35px rgba(255, 215, 0, 0.25);
     }
+
     100%{
         box-shadow:
         0 0 10px rgba(255, 215, 0, 0.2),
         0 0 20px rgba(255, 215, 0, 0.1);
     }
-    @media (max-width: 768px) {
+}
+
+/* 📱 VERSION TELEPHONE */
+@media (max-width: 768px) {
 
     body{
         padding: 15px;
@@ -162,13 +177,25 @@ h1{
         align-items: center;
     }
 
+    .achievement{
+        min-width: unset;
+        width: 90%;
+    }
+
+    .achievements{
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        align-items: center;
+    }
+
 }
 }
     </style>
 </head>
 
 <body>
-    <div class="achievements">
+    <div class="achievement" onclick="removeAchievement(this)">
     
     <div class="achievement">
         <div class="icon">🏆</div>
@@ -288,7 +315,19 @@ h1{
     <a href="index.html">
         ⬅ Retour à l'accueil
     </a>
+<script>
 
+function removeAchievement(element){
+
+    element.classList.add("disappear");
+
+    setTimeout(() => {
+        element.remove();
+    }, 500);
+
+}
+
+</script>
 </body>
 
 </html>
